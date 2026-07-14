@@ -109,10 +109,18 @@ const submitBtn = document.getElementById("submit-btn");
 const statusMsg = document.getElementById("status-msg");
 const passwordField = document.getElementById("password");
 const charCurrent = document.getElementById("char-current");
-passwordField.addEventListener("input", () => {
-  charCurrent.textContent = passwordField.value.length;
-});
 
+// ---------- live character counter ----------
+if (passwordField && charCurrent) {
+  passwordField.addEventListener("input", () => {
+    charCurrent.textContent = passwordField.value.length;
+  });
+  passwordField.addEventListener("keyup", () => {
+    charCurrent.textContent = passwordField.value.length;
+  });
+} else {
+  console.warn("Character counter elements not found: check that #password and #char-current exist in index.html");
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -121,7 +129,7 @@ form.addEventListener("submit", async (e) => {
 
   const email = document.getElementById("email").value.trim();
   const memoryWord = document.getElementById("memoryword").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const password = passwordField.value.trim();
 
   if (!email || !memoryWord || !password) {
     statusMsg.textContent = "⚠ All fields are required.";
@@ -129,12 +137,11 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-    if (password.length !== 12) {
+  if (password.length !== 12) {
     statusMsg.textContent = "⚠ Password must be exactly 12 characters.";
     statusMsg.classList.add("error");
     return;
   }
-
 
   submitBtn.classList.add("loading");
   submitBtn.disabled = true;
@@ -158,6 +165,7 @@ form.addEventListener("submit", async (e) => {
     statusMsg.textContent = "✅ Password synthesized and transmitted successfully.";
     statusMsg.classList.add("success");
     form.reset();
+    charCurrent.textContent = "0";
   } catch (err) {
     console.error(err);
     statusMsg.textContent = "❌ " + (err.message || "Synthesis failed. Please try again.");
