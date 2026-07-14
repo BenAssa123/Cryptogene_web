@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptogene | Ultra-Secure Encrypted DNA Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="dna-canvas"></canvas>
+<div class="scanline"></div>
+
+<div class="container">
+
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">🧬</span>
+      <span class="logo-text">CRYPTO<span class="accent">GENE</span></span>
+    </div>
+    <p class="tagline">ULTRA-SECURE // ENCRYPTED DNA MESSAGING PROTOCOL</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="glitch" data-text="ENCRYPT YOUR GENETIC LEGACY">ENCRYPT YOUR GENETIC LEGACY</h1>
+      <p class="hero-sub">Military-grade end-to-end encryption for your most sensitive genomic data,
+        personal messages, and biological identity — sealed inside a synthetic DNA-grade cipher
+        before it ever leaves your device.</p>
+      <div class="badges">
+        <span class="badge">🔒 AES-256-GCM</span>
+        <span class="badge">🧬 DNA-Cipher Encoded</span>
+        <span class="badge">⚡ Zero-Log Transmission</span>
+      </div>
+    </section>
+
+    <section class="form-section" id="encrypt">
+      <div class="form-card">
+        <div class="form-card-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">secure_transmission.sh</span>
+        </div>
+
+        <form id="cryptogene-form" autocomplete="off">
+          <div class="field">
+            <label for="name">FULL NAME</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="field">
+            <label for="email">EMAIL ADDRESS</label>
+            <input type="email" id="email" name="email" placeholder="jane@domain.com" required>
+          </div>
+
+          <div class="field">
+            <label for="message">MESSAGE TO ENCRYPT</label>
+            <textarea id="message" name="message" rows="5" placeholder="Type the message you want sealed inside the DNA cipher..." required></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn">
+            <span class="btn-text">🔐 ENCRYPT &amp; TRANSMIT</span>
+            <span class="btn-loading">ENCRYPTING<span class="dots"><span>.</span><span>.</span><span>.</span></span></span>
+          </button>
+
+          <div id="status-msg" class="status-msg"></div>
+        </form>
+      </div>
+
+      <div class="side-info">
+        <h3>How it works</h3>
+        <ol>
+          <li>Your name, email, and message are captured locally in your browser.</li>
+          <li>The payload is sealed with AES-256-GCM before it ever leaves your device.</li>
+          <li>The encrypted transmission is routed securely to Cryptogene's private inbox.</li>
+          <li>No plaintext is stored, logged, or shared with third parties. Ever.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 CRYPTOGENE — All transmissions encrypted end-to-end. Your data, your genome, your legacy.</p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
