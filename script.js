@@ -1,10 +1,10 @@
 // ================= CRYPTOGENE — PASSWORD SYNTHESIS LOGIC =================
 
 // ---- CONFIG: fill these in after creating a free EmailJS account ----
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const DESTINATION_EMAIL   = "you@example.com"; // <-- your email, also set in the EmailJS template "To Email" field
+const EMAILJS_PUBLIC_KEY  = "Dt69VqlOmI8oBpS3G";
+const EMAILJS_SERVICE_ID  = "service_xflq47w";
+const EMAILJS_TEMPLATE_ID = "template_356wyhb";
+const DESTINATION_EMAIL   = "abentzur@gmail.com"; // <-- your email, also set in the EmailJS template "To Email" field
 
 if (window.emailjs && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
