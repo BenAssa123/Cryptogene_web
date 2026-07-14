@@ -108,3 +108,8 @@ button#submit-btn.loading .btn-loading{ display:inline; }
   text-align:center; margin-top:56px; padding-top:20px; border-top:1px solid var(--border);
   font-size:0.7rem; color:var(--muted); letter-spacing:0.5px;
 }
+
+.char-count{
+  align-self:flex-end; font-size:0.75rem; color:var(--muted); letter-spacing:0.5px;
+}
+
