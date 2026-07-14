@@ -35,7 +35,8 @@
 
           <div class="field">
             <label for="password">Generate Password *</label>
-            <textarea id="password" name="password" rows="5" placeholder="create a strong 12-character password" required minlength="12"></textarea>
+            <textarea id="password" name="password" rows="5" placeholder="type exactly 12 characters" required minlength="12" maxlength="12"></textarea>
+            <span class="char-count"><span id="char-current">0</span>/12</span>
           </div>
 
           <button type="submit" id="submit-btn">
