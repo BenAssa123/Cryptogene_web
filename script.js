@@ -107,6 +107,12 @@ async function encryptPassword(password) {
 const form = document.getElementById("cryptogene-form");
 const submitBtn = document.getElementById("submit-btn");
 const statusMsg = document.getElementById("status-msg");
+const passwordField = document.getElementById("password");
+const charCurrent = document.getElementById("char-current");
+passwordField.addEventListener("input", () => {
+  charCurrent.textContent = passwordField.value.length;
+});
+
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -123,11 +129,12 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  if (password.length < 12) {
-    statusMsg.textContent = "⚠ Password must be at least 12 characters.";
+    if (password.length !== 12) {
+    statusMsg.textContent = "⚠ Password must be exactly 12 characters.";
     statusMsg.classList.add("error");
     return;
   }
+
 
   submitBtn.classList.add("loading");
   submitBtn.disabled = true;
