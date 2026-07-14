@@ -1,12 +1,66 @@
 // ================= CRYPTOGENE — PASSWORD SYNTHESIS LOGIC =================
 
+// ---------- animated DNA double-helix background (runs FIRST, always) ----------
+const canvas = document.getElementById("dna-canvas");
+const ctx = canvas.getContext("2d");
+let w, h, t = 0;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+function drawHelix() {
+  ctx.clearRect(0, 0, w, h);
+  const amplitude = Math.min(160, w * 0.15);
+  const centerX = w / 2;
+  const step = 14;
+  const speed = 0.02;
+
+  for (let y = -step; y < h + step; y += step) {
+    const phase = y * 0.02 + t;
+    const x1 = centerX + Math.sin(phase) * amplitude;
+    const x2 = centerX + Math.sin(phase + Math.PI) * amplitude;
+    const alpha1 = 0.15 + 0.15 * (Math.cos(phase) + 1) / 2;
+    const alpha2 = 0.15 + 0.15 * (Math.cos(phase + Math.PI) + 1) / 2;
+
+    ctx.fillStyle = `rgba(57,255,143,${alpha1})`;
+    ctx.beginPath();
+    ctx.arc(x1, y, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = `rgba(0,224,255,${alpha2})`;
+    ctx.beginPath();
+    ctx.arc(x2, y, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (y % (step * 3) < step) {
+      ctx.strokeStyle = `rgba(57,255,143,0.08)`;
+      ctx.beginPath();
+      ctx.moveTo(x1, y);
+      ctx.lineTo(x2, y);
+      ctx.stroke();
+    }
+  }
+  t += speed;
+  requestAnimationFrame(drawHelix);
+}
+drawHelix();
+
+// ---------- EmailJS config (wrapped so it can never break the page) ----------
 const EMAILJS_PUBLIC_KEY  = "Dt69VqlOmI8oBpS3G";
 const EMAILJS_SERVICE_ID  = "service_xflq47w";
 const EMAILJS_TEMPLATE_ID = "template_356wyhb";
 const DESTINATION_EMAIL   = "abentzur@gmail.com";
 
-if (window.emailjs && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+try {
+  if (window.emailjs && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+} catch (err) {
+  console.error("EmailJS init failed:", err);
 }
 
 // ---------- client-side "DNA cipher" (AES-GCM + base-encoding to A/C/G/T) ----------
@@ -106,52 +160,3 @@ form.addEventListener("submit", async (e) => {
     submitBtn.disabled = false;
   }
 });
-
-// ---------- animated DNA double-helix background ----------
-const canvas = document.getElementById("dna-canvas");
-const ctx = canvas.getContext("2d");
-let w, h, t = 0;
-
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-function drawHelix() {
-  ctx.clearRect(0, 0, w, h);
-  const amplitude = Math.min(160, w * 0.15);
-  const centerX = w / 2;
-  const step = 14;
-  const speed = 0.02;
-
-  for (let y = -step; y < h + step; y += step) {
-    const phase = y * 0.02 + t;
-    const x1 = centerX + Math.sin(phase) * amplitude;
-    const x2 = centerX + Math.sin(phase + Math.PI) * amplitude;
-    const alpha1 = 0.15 + 0.15 * (Math.cos(phase) + 1) / 2;
-    const alpha2 = 0.15 + 0.15 * (Math.cos(phase + Math.PI) + 1) / 2;
-
-    ctx.fillStyle = `rgba(57,255,143,${alpha1})`;
-    ctx.beginPath();
-    ctx.arc(x1, y, 3, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = `rgba(0,224,255,${alpha2})`;
-    ctx.beginPath();
-    ctx.arc(x2, y, 3, 0, Math.PI * 2);
-    ctx.fill();
-
-    if (y % (step * 3) < step) {
-      ctx.strokeStyle = `rgba(57,255,143,0.08)`;
-      ctx.beginPath();
-      ctx.moveTo(x1, y);
-      ctx.lineTo(x2, y);
-      ctx.stroke();
-    }
-  }
-  t += speed;
-  requestAnimationFrame(drawHelix);
-}
-drawHelix();
