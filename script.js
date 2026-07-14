@@ -122,7 +122,7 @@ resize();
 
 function drawHelix() {
   ctx.clearRect(0, 0, w, h);
-  const amplitude = Math.min(140, w * 0.12);
+  const amplitude = Math.min(160, w * 0.15);
   const centerX = w / 2;
   const step = 14;
   const speed = 0.02;
@@ -131,8 +131,8 @@ function drawHelix() {
     const phase = y * 0.02 + t;
     const x1 = centerX + Math.sin(phase) * amplitude;
     const x2 = centerX + Math.sin(phase + Math.PI) * amplitude;
-    const alpha1 = 0.12 + 0.14 * (Math.cos(phase) + 1) / 2;
-    const alpha2 = 0.12 + 0.14 * (Math.cos(phase + Math.PI) + 1) / 2;
+    const alpha1 = 0.15 + 0.15 * (Math.cos(phase) + 1) / 2;
+    const alpha2 = 0.15 + 0.15 * (Math.cos(phase + Math.PI) + 1) / 2;
 
     ctx.fillStyle = `rgba(57,255,143,${alpha1})`;
     ctx.beginPath();
@@ -145,7 +145,7 @@ function drawHelix() {
     ctx.fill();
 
     if (y % (step * 3) < step) {
-      ctx.strokeStyle = `rgba(57,255,143,0.07)`;
+      ctx.strokeStyle = `rgba(57,255,143,0.08)`;
       ctx.beginPath();
       ctx.moveTo(x1, y);
       ctx.lineTo(x2, y);
